@@ -1,0 +1,1 @@
+python flash.py --port COM10 write_flash 0x40000 firmware/0x40000.bin

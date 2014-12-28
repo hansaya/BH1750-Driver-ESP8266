@@ -1,0 +1,55 @@
+int8_t 	at_getCmdNum(void);
+void 	at_print_allCmd(void);
+
+
+/**
+  * @brief  Print all AT+Commands.
+  * @param  id: command id number
+  * @retval None
+  */
+void ICACHE_FLASH_ATTR
+at_exeCmdHelp(uint8_t id)
+{
+	uart0_sendStr("AT+ Commands: \r\n");	
+	at_print_allCmd();	
+	at_backOk;
+}
+
+  /**
+  * @brief  Print all commands
+  * @retval none
+  */
+void ICACHE_FLASH_ATTR
+at_print_allCmd(void)
+{
+	uint8_t i;
+	char temp[128];
+	for(i=1;i<at_cmdNum;i++)
+	{
+		os_sprintf(temp,"%s\r\n", at_fun[i].at_cmdName);
+		uart0_sendStr(temp);
+	}
+		
+}
+
+
+/**
+  * @brief  Checks if the device is accepting multiple connections
+  * @param  none
+  * @retval MUX status
+  *  @arg false: no MUX
+  *  @arg  true: MUX
+  */
+BOOL isIPMUX(void)
+
+/**
+  * @brief  Setup commad of send ip data.
+  * @param  id: commad id number
+  * @param  pPara: AT input param
+  * @retval None
+  */
+void ICACHE_FLASH_ATTR
+send_data_directly(uint8_t conid, char *payload)
+{
+	espconn_sent(pLink[conid].pCon, payload, strlen(payload));
+}
