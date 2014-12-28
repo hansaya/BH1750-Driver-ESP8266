@@ -1,6 +1,6 @@
 
 
-int test_light_sensor();
+void BH1750Init();
 
 
 

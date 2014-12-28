@@ -9,10 +9,11 @@
 #include "at_gpio.h"
 #include "osapi.h"
 #include "os_type.h"
-#include "ws2812.h"
+//#include "ws2812.h"
 //#include "bbb_dht_read.h"
 #include "at_baseCmd.h"
-#include "dht_sensor.h"
+//#include "dht_sensor.h"
+#include "BH1750.h"
 
 //uncomment to enable debug infos
 //#define DEBUG
@@ -389,20 +390,25 @@ at_exeCmdGmr(uint8_t id)
 	at_backOk;
 }
 void at_setupTemp(uint8_t id){
+	char temp[128];
+	int results = test_light_sensor();
+	os_sprintf(temp,"Value#: %d \r\n\r\n",results);
+	uart0_sendStr(temp);
 	
-		//Disarm timer
-		os_timer_disarm(&timer_TempSensor);
 
-		//Setup timer
-		os_timer_setfn(&timer_TempSensor, (os_timer_func_t *)polling_tempTimer, NULL);
-
-		//Set up the timer, (timer, milliseconds, 1=cycle 0=once)
-		os_timer_arm(&timer_TempSensor, 5000, 1);
+//		//Disarm timer
+//		os_timer_disarm(&timer_TempSensor);
+//
+//		//Setup timer
+//		os_timer_setfn(&timer_TempSensor, (os_timer_func_t *)polling_tempTimer, NULL);
+//
+//		//Set up the timer, (timer, milliseconds, 1=cycle 0=once)
+//		os_timer_arm(&timer_TempSensor, 5000, 1);
 	
 }
 void polling_tempTimer(void *arg){
-	test_light_sensor();
-	//dht_sensor_init(13,PERIPHS_IO_MUX_MTCK_U,FUNC_GPIO13);
+//	test_light_sensor();
+//	dht_sensor_init(13,PERIPHS_IO_MUX_MTCK_U,FUNC_GPIO13);
 }
 
 /**

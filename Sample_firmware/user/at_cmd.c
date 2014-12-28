@@ -1,7 +1,7 @@
 #include "at_cmd.h"
 #include "user_interface.h"
 #include "osapi.h"
-#include "dht_sensor.h"
+//#include "dht_sensor.h"
 //#include<stdlib.h>
 
 /** @defgroup AT_BASECMD_Functions
